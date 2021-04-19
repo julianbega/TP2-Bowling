@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BowlingController : MonoBehaviour
 {
-    const int totalShoots = 3;
+    public int totalShoots = 3;
     public int shootsCount = 0;
     bool allreadyShoot = false;
     public int points = 0;
@@ -34,7 +34,7 @@ public class BowlingController : MonoBehaviour
         {
             timeToShoot = timeToShoot - Time.deltaTime;
         }
-        if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01 && timeToShoot <= 0)
+        if (BallRigidbody.velocity.magnitude < 0.01 )
         {
             for (int i = 0; i < Kegels.Length; i++)
             {
@@ -46,10 +46,6 @@ public class BowlingController : MonoBehaviour
                     kegelsStanding--;
                  }
             }
-            Ball.transform.rotation = Quaternion.identity;
-            Ball.transform.position = new Vector3(1.0f, 0.0f, 0.0f);
-            allreadyShoot = false;
-            timeToShoot = 2;
         }
     }
 }

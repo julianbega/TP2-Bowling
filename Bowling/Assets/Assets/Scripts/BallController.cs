@@ -8,9 +8,10 @@ public class BallController : MonoBehaviour
     const int totalShoots = 3;
     public int shootsCount = 0;
     public float Force = 0;
-    private float BaseForce = 5000;
-    private bool allreadyShoot = false;
-    private float timeToShoot = 2;
+    public float BaseForce = 5000;
+    public bool allreadyShoot = false;
+    public float timeToShoot = 2;
+    public float maxTimeToNextShoot = 20;
     public BowlingController KegelsChecker;
 
     private float leftLimit = -8.5f;
@@ -32,15 +33,19 @@ public class BallController : MonoBehaviour
             timeToShoot = 2;
             allreadyShoot = true;
         }
-        if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01)
+            
+
+        if (allreadyShoot == true )
         {
             timeToShoot = timeToShoot - Time.deltaTime;
-
         }
-        if (timeToShoot <= 0 && BallRigidbody.velocity.magnitude < 0.01)
+        if ((timeToShoot <= -maxTimeToNextShoot && allreadyShoot == true) )
         {
+            this.transform.rotation = Quaternion.identity;
+            this.transform.position = new Vector3(1.0f, 0.0f, 0.0f);
+            BallRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            BallRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
             allreadyShoot = false;
-            Force = BaseForce;
         }
         
 
