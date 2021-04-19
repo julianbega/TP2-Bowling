@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     Rigidbody BallRigidbody;
     const int totalShoots = 3;
     public int shootsCount = 0;
-    public float Force = 500f;
+    public float Force = 0;
+    private float BaseForce = 5000;
     private bool allreadyShoot = false;
-    float timeToShoot = 2;
+    private float timeToShoot = 2;
     public BowlingController KegelsChecker;
+
+    private float leftLimit = -8.5f;
+    private float rightLimit = 10.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,15 +40,9 @@ public class Ball : MonoBehaviour
         if (timeToShoot <= 0 && BallRigidbody.velocity.magnitude < 0.01)
         {
             allreadyShoot = false;
+            Force = BaseForce;
         }
-        /* if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01)
-         {
-             if (this.transform.position.x < -7.5 || this.transform.position.x > 8.1)
-             { 
-             this.transform.rotation = Quaternion.identity;
-             BallRigidbody.AddForce(transform.forward * -Force);
-             }
-         }*/
+        
 
         if (Input.GetKey(KeyCode.UpArrow) & allreadyShoot == false)
         {
@@ -55,7 +54,7 @@ public class Ball : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftArrow) & allreadyShoot == false)
         {
-            if (this.transform.position.x > -8.5)
+            if (this.transform.position.x > leftLimit)
             { 
             this.transform.Translate(Vector3.left * Time.deltaTime, Space.World);
             }
@@ -63,7 +62,7 @@ public class Ball : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow) & allreadyShoot == false)
         {
 
-            if (this.transform.position.x < 10.3)
+            if (this.transform.position.x < rightLimit)
             {
                 this.transform.Translate(Vector3.right * Time.deltaTime, Space.World);
             }

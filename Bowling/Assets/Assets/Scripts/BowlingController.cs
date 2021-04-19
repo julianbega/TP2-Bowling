@@ -12,7 +12,7 @@ public class BowlingController : MonoBehaviour
     float timeToShoot = 2;
     Rigidbody BallRigidbody;
     public GameObject Ball;
-    public KegelDrop[] Kegels;
+    public Kegel[] Kegels;
 
 
     // Start is called before the first frame update

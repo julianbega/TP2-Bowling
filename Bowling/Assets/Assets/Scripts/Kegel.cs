@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KegelDrop : MonoBehaviour
+public class Kegel : MonoBehaviour
 {
     Rigidbody KegelRigidbody;
     public bool KegelHasDrop = false;
