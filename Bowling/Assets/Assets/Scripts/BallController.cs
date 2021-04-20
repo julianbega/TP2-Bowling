@@ -17,59 +17,70 @@ public class BallController : MonoBehaviour
     private float leftLimit = -8.5f;
     private float rightLimit = 10.3f;
 
+    private bool isActive;
+
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameManager.Instance;
         BallRigidbody = GetComponent<Rigidbody>();
+        if (gm.GetGameMode() == 0)
+            isActive = true;
+        else
+            isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount< totalShoots && KegelsChecker.kegelsStanding >=1)
+        if (isActive)
         {
-            shootsCount++;
-            BallRigidbody.AddForce(transform.forward * Force);
-            timeToShoot = 2;
-            allreadyShoot = true;
-        }
-            
-
-        if (allreadyShoot == true )
-        {
-            timeToShoot = timeToShoot - Time.deltaTime;
-        }
-        if ((timeToShoot <= -maxTimeToNextShoot && allreadyShoot == true) )
-        {
-            this.transform.rotation = Quaternion.identity;
-            this.transform.position = new Vector3(1.0f, 0.0f, 0.0f);
-            BallRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            BallRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-            allreadyShoot = false;
-        }
-        
-
-        if (Input.GetKey(KeyCode.UpArrow) & allreadyShoot == false)
-        {
-            Force = Force + 1;
-        }
-        if (Input.GetKey(KeyCode.DownArrow) & allreadyShoot == false)
-        {
-            Force = Force - 1;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) & allreadyShoot == false)
-        {
-            if (this.transform.position.x > leftLimit)
-            { 
-            this.transform.Translate(Vector3.left * Time.deltaTime, Space.World);
-            }
-        }
-        if (Input.GetKey(KeyCode.RightArrow) & allreadyShoot == false)
-        {
-
-            if (this.transform.position.x < rightLimit)
+            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount < totalShoots && KegelsChecker.kegelsStanding >= 1)
             {
-                this.transform.Translate(Vector3.right * Time.deltaTime, Space.World);
+                shootsCount++;
+                BallRigidbody.AddForce(transform.forward * Force);
+                timeToShoot = 2;
+                allreadyShoot = true;
+            }
+
+
+            if (allreadyShoot == true)
+            {
+                timeToShoot = timeToShoot - Time.deltaTime;
+            }
+            if ((timeToShoot <= -maxTimeToNextShoot && allreadyShoot == true))
+            {
+                this.transform.rotation = Quaternion.identity;
+                this.transform.position = new Vector3(1.0f, 0.0f, 0.0f);
+                BallRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                BallRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+                allreadyShoot = false;
+            }
+
+
+            if (Input.GetKey(KeyCode.UpArrow) & allreadyShoot == false)
+            {
+                Force = Force + 1;
+            }
+            if (Input.GetKey(KeyCode.DownArrow) & allreadyShoot == false)
+            {
+                Force = Force - 1;
+            }
+            if (Input.GetKey(KeyCode.LeftArrow) & allreadyShoot == false)
+            {
+                if (this.transform.position.x > leftLimit)
+                {
+                    this.transform.Translate(Vector3.left * Time.deltaTime, Space.World);
+                }
+            }
+            if (Input.GetKey(KeyCode.RightArrow) & allreadyShoot == false)
+            {
+
+                if (this.transform.position.x < rightLimit)
+                {
+                    this.transform.Translate(Vector3.right * Time.deltaTime, Space.World);
+                }
             }
         }
     }

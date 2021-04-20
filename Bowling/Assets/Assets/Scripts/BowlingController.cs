@@ -14,37 +14,48 @@ public class BowlingController : MonoBehaviour
     public GameObject Ball;
     public Kegel[] Kegels;
 
+    private bool isActive;
+
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameManager.Instance;
         BallRigidbody = Ball.GetComponent<Rigidbody>();
-   
+        if (gm.GetGameMode() == 0)
+            isActive = true;
+        else
+            isActive = false;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount < totalShoots && kegelsStanding >= 1 && BallRigidbody.velocity.magnitude < 0.01 )
+        if (isActive)
         {
-            allreadyShoot = true;
-            shootsCount++;
-        }
-        if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01)
-        {
-            timeToShoot = timeToShoot - Time.deltaTime;
-        }
-        if (BallRigidbody.velocity.magnitude < 0.01 )
-        {
-            for (int i = 0; i < Kegels.Length; i++)
+            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount < totalShoots && kegelsStanding >= 1 && BallRigidbody.velocity.magnitude < 0.01)
             {
-               
-                 if (Kegels[i].KegelHasDrop == true && Kegels[i].isActiveAndEnabled)
-                 {                    
-                     Kegels[i].gameObject.SetActive(false);
-                    points += 10;
-                    kegelsStanding--;
-                 }
+                allreadyShoot = true;
+                shootsCount++;
+            }
+            if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01)
+            {
+                timeToShoot = timeToShoot - Time.deltaTime;
+            }
+            if (BallRigidbody.velocity.magnitude < 0.01)
+            {
+                for (int i = 0; i < Kegels.Length; i++)
+                {
+
+                    if (Kegels[i].KegelHasDrop == true && Kegels[i].isActiveAndEnabled)
+                    {
+                        Kegels[i].gameObject.SetActive(false);
+                        points += 10;
+                        kegelsStanding--;
+                    }
+                }
             }
         }
     }

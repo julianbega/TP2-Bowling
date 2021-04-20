@@ -13,42 +13,47 @@ public class GameManager : MonoBehaviour
 
     public enum gameModes {Bowling, Shooting }
 
-    private static int actualGamemode = 0;
+    public static int actualGamemode = 0;
+
+    public int actualGamemodeToDebug = 0;
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null)
         {
             Destroy(this.gameObject);
         }
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     void Update()
     {
-        goToMenu();
+        GoToMenu();
+        actualGamemodeToDebug = actualGamemode;
     }
 
-    public static int getPoints()
+    public int GetPoints()
     {
         return score;
     }
-    public static void setPoints(int points)
+    public void SetPoints(int points)
     {
         score = points;
     }
 
-    public static int getGameMode()
+    public int GetGameMode()
     {
         return actualGamemode;
     }
-    public static void setGameMode(int mode)
+    public void SetGameMode(int mode)
     {
+        Debug.Log("entra");
         actualGamemode = mode;
     }
 
-    public static void goToMenu()
+    public void GoToMenu()
     {
         if (Input.GetKey(KeyCode.Escape) )
         {
