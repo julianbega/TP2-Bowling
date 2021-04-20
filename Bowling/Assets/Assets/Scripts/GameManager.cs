@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return instance; } }
 
-    public int score;
+    private static int score;
 
+    public enum gameModes {Bowling, Shooting }
+
+    private static int actualGamemode = 0;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,15 +25,34 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        goToMenu();
+    }
+
+    public static int getPoints()
+    {
+        return score;
+    }
+    public static void setPoints(int points)
+    {
+        score = points;
+    }
+
+    public static int getGameMode()
+    {
+        return actualGamemode;
+    }
+    public static void setGameMode(int mode)
+    {
+        actualGamemode = mode;
+    }
+
+    public static void goToMenu()
+    {
+        if (Input.GetKey(KeyCode.Escape) )
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
