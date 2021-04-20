@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     Rigidbody BallRigidbody;
+    MeshRenderer BallRenderer;
     const int totalShoots = 3;
     public int shootsCount = 0;
     public float Force = 0;
@@ -25,10 +26,19 @@ public class BallController : MonoBehaviour
     {
         gm = GameManager.Instance;
         BallRigidbody = GetComponent<Rigidbody>();
+        BallRenderer = GetComponent<MeshRenderer>();
         if (gm.GetGameMode() == 0)
+        {
             isActive = true;
+            BallRenderer.enabled = true;
+        }
         else
+        {
             isActive = false;
+            BallRenderer.enabled = false;
+        }
+
+        
     }
 
     // Update is called once per frame

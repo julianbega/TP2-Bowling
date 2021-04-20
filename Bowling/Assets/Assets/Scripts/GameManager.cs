@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return instance; } }
 
-    private static int score;
+    private static int score = 0;
+    private int remainingKegels = 10;
 
     public enum gameModes {Bowling, Shooting }
 
@@ -41,6 +42,14 @@ public class GameManager : MonoBehaviour
     public void SetPoints(int points)
     {
         score = points;
+    }
+    public int GetKegels()
+    {
+        return remainingKegels;
+    }
+    public void SetKegels(int actualKegels)
+    {
+        remainingKegels = actualKegels;
     }
 
     public int GetGameMode()
