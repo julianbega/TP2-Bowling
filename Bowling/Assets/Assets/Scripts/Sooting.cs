@@ -11,6 +11,11 @@ public class Sooting : MonoBehaviour
 
     private bool isActive;
 
+    public int numberOfKegelsPerExplosion;
+    public float minForceInExplosion;
+    public float maxForceInExplosion;
+    public GameObject miniKegelPrefab;
+
     private GameManager gm;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,7 @@ public class Sooting : MonoBehaviour
                         hit.transform.gameObject.SetActive(false);
                         gm.SetKegels(gm.GetKegels() - 1);
                         gm.SetPoints(gm.GetPoints() + 10);
+                        Explosion(hit.transform.position);
                     }
                     else 
                     {
@@ -51,5 +57,24 @@ public class Sooting : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Explosion(Vector3 explosionPos)
+    {
+        Debug.Log("Explota");
+        for (int i = 0; i < numberOfKegelsPerExplosion; i++)
+        {
+            GameObject miniKegel;
+            Rigidbody miniKegelRigidbody;
+            float explosionForce = Random.Range(minForceInExplosion, maxForceInExplosion);
+            Quaternion rotation = Quaternion.identity;
+            rotation.x = Random.Range(-40, 40);
+            rotation.y = 0;
+            rotation.z = Random.Range(-40, 40);
+            miniKegel = Instantiate(miniKegelPrefab, explosionPos, rotation);
+            miniKegelRigidbody = miniKegel.GetComponent<Rigidbody>();
+            miniKegelRigidbody.AddForce(transform.up * explosionForce);
+        }
+        
     }
 }
