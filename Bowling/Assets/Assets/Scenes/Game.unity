@@ -1619,6 +1619,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382214488}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &388115105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2231492744928053708, guid: 9f4b45c0f282f56428632e3eb1049268,
+    type: 3}
+  m_PrefabInstance: {fileID: 461526340712774181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &388115107
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388115105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.81029963
+  m_Height: 5.5012693
+  m_Direction: 1
+  m_Center: {x: 0.00000020861626, y: 2.7506351, z: 0}
+--- !u!54 &388115108
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388115105}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &388115111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388115105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48009e6fad2381e4abae90a2178d6467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KegelHasDrop: 0
 --- !u!1 &405067800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,6 +3617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BowllingInfo: {fileID: 1446865662}
+  BallInfo: {fileID: 1949958623}
   Score: {fileID: 150014254}
   Kegels: {fileID: 1527413911}
   Shoots: {fileID: 727476935}
@@ -4802,7 +4852,7 @@ MonoBehaviour:
   kegelsStanding: 10
   Ball: {fileID: 1949958622}
   Kegels:
-  - {fileID: 1659715791}
+  - {fileID: 388115111}
   - {fileID: 1142433989}
   - {fileID: 48378704}
   - {fileID: 1571626611}
@@ -4843,6 +4893,11 @@ MonoBehaviour:
   rayCastLayer:
     serializedVersion: 2
     m_Bits: 4294967295
+  numberOfKegelsPerExplosion: 3
+  minForceInExplosion: 400
+  maxForceInExplosion: 1200
+  miniKegelPrefab: {fileID: 2542760098398602581, guid: c7e6d20c254aa9c4eb1857eef0c7a590,
+    type: 3}
 --- !u!1 &1474713680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5836,55 +5891,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616610800}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1659715785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440290196386195208, guid: 9f4b45c0f282f56428632e3eb1049268,
-    type: 3}
-  m_PrefabInstance: {fileID: 461526340712774181}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1659715789
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659715785}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.81029963
-  m_Height: 5.5012693
-  m_Direction: 1
-  m_Center: {x: 0.00000014901161, y: 2.7506347, z: 0}
---- !u!54 &1659715790
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659715785}
-  serializedVersion: 2
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1659715791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659715785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48009e6fad2381e4abae90a2178d6467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  KegelHasDrop: 0
 --- !u!1001 &1681730617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6959,7 +6965,7 @@ MonoBehaviour:
   BaseForce: 7000
   allreadyShoot: 0
   timeToShoot: 2
-  maxTimeToNextShoot: 20
+  maxTimeToNextShoot: 9
   KegelsChecker: {fileID: 1446865662}
 --- !u!1 &1968197890
 GameObject:
@@ -7598,6 +7604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688518622935786373, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688518622935786373, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.22
       objectReference: {fileID: 0}
@@ -7605,6 +7616,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 4.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034269846320680404, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2034269846320680404, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
@@ -7622,6 +7638,11 @@ PrefabInstance:
       value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 2174840550221485296, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231492744928053708, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
       propertyPath: m_Layer
       value: 8
@@ -7645,6 +7666,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848064558221059393, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848064558221059393, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848064558221059393, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.93
       objectReference: {fileID: 0}
     - target: {fileID: 3991323718906877604, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
@@ -7673,6 +7709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4335861358566351166, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335861358566351166, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.63
       objectReference: {fileID: 0}
@@ -7688,6 +7729,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545532956040692493, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545532956040692493, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.27
       objectReference: {fileID: 0}
@@ -7700,6 +7746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882088892868320089, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4882088892868320089, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
@@ -7768,6 +7819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6276334761547694982, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6276334761547694982, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.68
       objectReference: {fileID: 0}
@@ -7790,6 +7846,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260163800763510521, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7260163800763510521, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
@@ -7826,6 +7887,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7769945004181342987, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769945004181342987, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7814569381406195103, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
       propertyPath: m_Name
@@ -7848,6 +7919,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8126363888060271083, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126363888060271083, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.46
       objectReference: {fileID: 0}
@@ -7865,6 +7941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777482432554665802, guid: 9f4b45c0f282f56428632e3eb1049268,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8777482432554665802, guid: 9f4b45c0f282f56428632e3eb1049268,
         type: 3}

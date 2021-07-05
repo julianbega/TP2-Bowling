@@ -10,6 +10,7 @@ public class Kegel : MonoBehaviour
     void Start()
     {
         KegelRigidbody = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame

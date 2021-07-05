@@ -35,10 +35,10 @@ public class BowlingController : MonoBehaviour
     {
         if (isActive)
         {
-            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount < totalShoots && kegelsStanding >= 1 && BallRigidbody.velocity.magnitude < 0.01)
+            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && totalShoots <= 1 && kegelsStanding >= 1 && BallRigidbody.velocity.magnitude < 0.01)
             {
                 allreadyShoot = true;
-                shootsCount++;
+                totalShoots--;
             }
             if (allreadyShoot == true && BallRigidbody.velocity.magnitude < 0.01)
             {
@@ -57,6 +57,11 @@ public class BowlingController : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (kegelsStanding <= 0)
+        {
+
         }
     }
 }

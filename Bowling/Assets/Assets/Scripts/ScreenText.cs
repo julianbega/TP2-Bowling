@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScreenText : MonoBehaviour
 {
     public BowlingController BowllingInfo;
+    public BallController BallInfo;
 
     private int RemaingingShoots;
     private int RemainingKegels;
@@ -36,7 +37,7 @@ public class ScreenText : MonoBehaviour
         {
             Points = BowllingInfo.points;
             RemainingKegels = BowllingInfo.kegelsStanding;
-            RemaingingShoots = BowllingInfo.totalShoots - BowllingInfo.shootsCount;
+            RemaingingShoots = BallInfo.shootsCount-1;
             Score.text = "Score: " + Points;
             Kegels.text = "Remaining Kegels: " + RemainingKegels;
             Shoots.text = "Remaining Shoots: " + RemaingingShoots;

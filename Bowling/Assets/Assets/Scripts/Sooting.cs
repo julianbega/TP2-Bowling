@@ -52,10 +52,14 @@ public class Sooting : MonoBehaviour
                     else 
                     {
                         gm.SetKegels(10);
-                        SceneManager.LoadScene("Credits");
+                        gm.GoToCredits();
                     }
                 }
             }
+        }
+        if (gm.GetKegels() == 0)
+        {
+            gm.GoToCredits();
         }
     }
 

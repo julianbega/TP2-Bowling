@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour
 {
     Rigidbody BallRigidbody;
     MeshRenderer BallRenderer;
-    const int totalShoots = 3;
+    const int totalShoots = 4;
     public int shootsCount = 0;
     public float Force = 0;
     public float BaseForce = 5000;
@@ -24,6 +24,7 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shootsCount = totalShoots;
         gm = GameManager.Instance;
         BallRigidbody = GetComponent<Rigidbody>();
         BallRenderer = GetComponent<MeshRenderer>();
@@ -46,13 +47,22 @@ public class BallController : MonoBehaviour
     {
         if (isActive)
         {
-            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount < totalShoots && KegelsChecker.kegelsStanding >= 1)
+            if (Input.GetKeyUp(KeyCode.Space) && shootsCount == 1)
             {
-                shootsCount++;
+                gm.GoToCredits();
+            }
+            if (KegelsChecker.kegelsStanding < 1)
+            {
+                gm.GoToCredits();
+            }
+            if (Input.GetKeyUp(KeyCode.Space) && allreadyShoot == false && shootsCount > 1 && KegelsChecker.kegelsStanding >= 1)
+            {
+                shootsCount--;
                 BallRigidbody.AddForce(transform.forward * Force);
                 timeToShoot = 2;
                 allreadyShoot = true;
             }
+            
 
 
             if (allreadyShoot == true)
@@ -66,6 +76,7 @@ public class BallController : MonoBehaviour
                 BallRigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
                 BallRigidbody.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
                 allreadyShoot = false;
+                
             }
 
 
